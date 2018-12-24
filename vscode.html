@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vscode.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+    <p style="font-size: 11px;">文件密级：公司内部A</p>
+<h1 id="vscode">vscode</h1>
+<h2 id="%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6">安装组件</h2>
+<p>1.ESLint</p>
+<p>最初是由Nicholas C. Zakas 于2013年6月创建的开源项目。它的目标是提供一个插件化的javascript代码检测工具。</p>
+<ul>
+<li>安装</li>
+</ul>
+<p>启动 vscode，在左侧菜单中点击<code>扩展</code>菜单（快捷键 Ctrl + Shift + x）;</p>
+<p><img src="./img/vscode-01.png" alt=""></p>
+<p>在扩展面板中搜索 <code>ESLint</code>，并点击安装。如果当前编辑器已安装，请略过；</p>
+<p>2.Prettier</p>
+<p>一个代码格式化工具，它可以支持 <code>JS/JSX/TS/Flow/JSON/CSS/LESS</code> 等文件格式。</p>
+<ul>
+<li>安装</li>
+</ul>
+<p>在扩展面板中搜索 <code>Prettier</code>，并点击安装。如果当前编辑器已安装，请略过；</p>
+<p>3.Vetur</p>
+<p>vscode 中支持 vue 的工具。</p>
+<ul>
+<li>安装</li>
+</ul>
+<p>在扩展面板中搜索 <code>Vetur</code>，并点击安装。如果当前编辑器已安装，请略过；</p>
+<h2 id="%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE">相关配置</h2>
+<p>vscode 提供了两种设置方式：</p>
+<ul>
+<li>用户设置： 这种方式进行的设置，会应用于该用户打开的所有工程；</li>
+<li>工作空间设置：工作空间是指使用 vscode 打开的某个文件夹，在该文件夹下会创建一个名为 <code>.vscode</code> 的隐藏文件夹，里面包含着<strong>仅适用于当前目录的</strong> vscode 的设置。工作空间的设置会覆盖用户的设置。</li>
+</ul>
+<p>为保证项目规范统一，我们更改用户默认设置，打开设置面板方式如下：</p>
+<ul>
+<li>点击 vscode 的<code>文件(File)</code> &gt; <code>首选项(Preferred item)</code> &gt; <code>设置(Setting)</code>，可以打开设置面板；</li>
+<li>在 vscode 中使用 <code>Ctrl + Shift + P</code> 打开命令面板，输入 <code>Preferences: Open User Settings</code>。</li>
+</ul>
+<p><img src="./img/vscode-02.png" alt=""></p>
+<p>点击红色框标记的<code>打开配置json</code>，并在右侧<code>用户设置</code>添加如下配置（配置定期更新）：</p>
+<pre class="hljs"><code><div>{
+    // 常规设置
+    <span class="hljs-attr">"files.autoSave"</span>: <span class="hljs-string">"off"</span>,
+    <span class="hljs-attr">"window.zoomLevel"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"files.associations"</span>: {
+      <span class="hljs-attr">"*.tpl"</span>: <span class="hljs-string">"html"</span>,  // tpl 按照 html 格式支持
+      <span class="hljs-attr">"*.css"</span>: <span class="hljs-string">"less"</span>  // css 支持 less 语法
+    },
+    <span class="hljs-attr">"editor.fontSize"</span>: <span class="hljs-number">12</span>,
+    <span class="hljs-attr">"editor.multiCursorModifier"</span>: <span class="hljs-string">"ctrlCmd"</span>,
+    <span class="hljs-attr">"editor.detectIndentation"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"editor.tabSize"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">"terminal.integrated.fontSize"</span>: <span class="hljs-number">12</span>,
+    <span class="hljs-attr">"workbench.colorTheme"</span>: <span class="hljs-string">"Solarized Light"</span>,
+    <span class="hljs-attr">"editor.wordWrap"</span>: <span class="hljs-string">"wordWrapColumn"</span>,
+    <span class="hljs-attr">"editor.wordWrapColumn"</span>: <span class="hljs-number">120</span>,
+    <span class="hljs-attr">"css.lint.compatibleVendorPrefixes"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.duplicateProperties"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.emptyRules"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.fontFaceProperties"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.hexColorLength"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.idSelector"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.ieHack"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.unknownProperties"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.lint.zeroUnits"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"css.validate"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"less.lint.argumentsInColorFunction"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.duplicateProperties"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.emptyRules"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.fontFaceProperties"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.idSelector"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.ieHack"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.important"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.universalSelector"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.lint.unknownProperties"</span>: <span class="hljs-string">"warning"</span>,
+    <span class="hljs-attr">"less.lint.zeroUnits"</span>: <span class="hljs-string">"error"</span>,
+    <span class="hljs-attr">"less.validate"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"eslint.autoFixOnSave"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"eslint.validate"</span>: [
+      <span class="hljs-string">"javascript"</span>,
+      <span class="hljs-string">"javascriptreact"</span>,
+      {
+        <span class="hljs-attr">"language"</span>: <span class="hljs-string">"vue"</span>,
+        <span class="hljs-attr">"autoFix"</span>: <span class="hljs-literal">true</span>
+      }
+    ],
+
+    <span class="hljs-attr">"vetur.format.defaultFormatter.html"</span>: <span class="hljs-string">"js-beautify-html"</span>,
+    <span class="hljs-attr">"vetur.format.defaultFormatterOptions"</span>: {
+      <span class="hljs-attr">"js-beautify-html"</span>: {
+        // Wrap attributes to new lines [auto|force|force-aligned|force-expand-multiline] [<span class="hljs-attr">"auto"</span>]
+        <span class="hljs-attr">"wrap_attributes"</span>: <span class="hljs-string">"force-expand-multiline"</span>
+      }
+    },
+    <span class="hljs-attr">"prettier.singleQuote"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"javascript.updateImportsOnFileMove.enabled"</span>: <span class="hljs-string">"always"</span>
+}
+</div></code></pre>
+
+</body>
+</html>
